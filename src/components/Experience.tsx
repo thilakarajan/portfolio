@@ -5,8 +5,8 @@ import { motion } from 'framer-motion'
 const experiences = [
   {
     role: 'Software Engineer',
-    company: '[Company Name]',
-    period: '[Start Date] - Present',
+    company: 'Packforce Pvt Ltd',
+    period: 'May 2025 - Present',
     description:
       'Built and maintained a full-stack product from concept to production, handling frontend development with ReactJS, REST APIs with Node.js and ExpressJS, database management with MySQL and MongoDB, and cloud infrastructure on AWS. Developed and shipped new features end-to-end while maintaining existing production systems, leveraging AI-assisted development tools (OpenCode) to accelerate velocity. Managed all Git-based workflows and took full ownership of the product lifecycle from requirements gathering through deployment and ongoing maintenance.',
   },

@@ -12,11 +12,11 @@ export default function Contact() {
     const data = new FormData(form)
 
     try {
-      await fetch('https://formspree.io/f/your-form-id', {
-        method: 'POST',
+      await fetch("https://formspree.io/f/xrejrrop", {
+        method: "POST",
         body: data,
-        headers: { Accept: 'application/json' },
-      })
+        headers: { Accept: "application/json" },
+      });
       setSubmitted(true)
     } catch {
       alert('Something went wrong. Please try again.')

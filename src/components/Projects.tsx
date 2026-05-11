@@ -4,14 +4,14 @@ import { motion } from 'framer-motion'
 
 const projects = [
   {
-    title: 'Your Place',
+    title: "Your Place",
     description:
-      'A full-stack social platform that lets users share and discover places through personal experiences and stories. Features user authentication, place listings with descriptions and ratings, and the ability to share experiences tied to specific locations.',
-    tech: ['ReactJS', 'ExpressJS', 'Node.js', 'MongoDB', 'Mongoose'],
-    github: 'https://github.com/thilakarajan/your-place',
-    live: 'https://your-place-demo.example.com',
+      "A full-stack social platform that lets users share and discover places through personal experiences and stories. Features user authentication, place listings with descriptions and ratings, and the ability to share experiences tied to specific locations.",
+    tech: ["ReactJS", "ExpressJS", "Node.js", "MongoDB", "Mongoose"],
+    github: "https://github.com/thilakarajan/your-place",
+    live: "https://mern-8bc59.web.app/",
   },
-]
+];
 
 export default function Projects() {
   return (

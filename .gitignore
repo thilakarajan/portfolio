@@ -35,7 +35,12 @@ yarn-error.log*
 
 # vercel
 .vercel
+session-ses*
 
+# opencode
+opencode.json
+skills-lock.json
+.agents/
 # typescript
 *.tsbuildinfo
 next-env.d.ts

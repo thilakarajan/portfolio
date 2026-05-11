@@ -1,6 +1,6 @@
 ---
 title: "My Journey with ReactJS"
-date: "August 2023"
+date: "2023-08"
 excerpt: "How I learned ReactJS and built real projects with it — from components to hooks to full applications."
 ---
 

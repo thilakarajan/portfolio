@@ -1,6 +1,6 @@
 ---
 title: "Styling with Tailwind CSS"
-date: "February 2024"
+date: "2024-02"
 excerpt: "How I learned Tailwind CSS to build modern UIs quickly with utility-first styling."
 ---
 

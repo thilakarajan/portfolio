@@ -12,7 +12,24 @@ export type Post = {
   content: string
 }
 
+function parseDate(dateStr: string): Date {
+  const monthYear = dateStr.match(/^(\w+)\s+(\d{4})$/);
+  if (monthYear) {
+    return new Date(`${monthYear[1]} 1, ${monthYear[2]}`);
+  }
+  return new Date(dateStr);
+}
+
+let cachedPosts: Omit<Post, 'content'>[] | null = null
+let cacheTime = 0
+const CACHE_TTL = 60_000
+
 export function getAllPosts(): Omit<Post, 'content'>[] {
+  const now = Date.now()
+  if (cachedPosts && now - cacheTime < CACHE_TTL) {
+    return cachedPosts
+  }
+
   if (!fs.existsSync(postsDirectory)) {
     return []
   }
@@ -34,12 +51,22 @@ export function getAllPosts(): Omit<Post, 'content'>[] {
         excerpt: data.excerpt || '',
       }
     })
-    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .sort((a, b) => {
+      const dateA = parseDate(a.date)
+      const dateB = parseDate(b.date)
+      return dateB.getTime() - dateA.getTime()
+    })
 
+  cachedPosts = posts
+  cacheTime = now
   return posts
 }
 
 export function getPostBySlug(slug: string): Post | null {
+  if (!/^[a-zA-Z0-9_-]+$/.test(slug)) {
+    return null
+  }
+
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`)
 

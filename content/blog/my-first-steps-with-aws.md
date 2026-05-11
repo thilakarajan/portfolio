@@ -1,6 +1,6 @@
 ---
 title: "My First Steps with AWS"
-date: "January 2024"
+date: "2024-01"
 excerpt: "How I learned to deploy and manage applications using Amazon Web Services."
 ---
 

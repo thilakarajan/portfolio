@@ -1,6 +1,6 @@
 ---
 title: "Version Control with Git"
-date: "October 2023"
+date: "2023-10"
 excerpt: "How I learned Git to manage code, collaborate, and keep my projects organized."
 ---
 

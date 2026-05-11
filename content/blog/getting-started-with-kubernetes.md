@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with Kubernetes"
-date: "May 2026"
+date: "2026-05"
 excerpt: "My first steps learning Kubernetes for container orchestration and cluster management."
 ---
 

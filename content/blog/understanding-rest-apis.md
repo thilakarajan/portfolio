@@ -1,6 +1,6 @@
 ---
 title: "Understanding REST APIs"
-date: "September 2023"
+date: "2023-09"
 excerpt: "How I learned to design and build RESTful APIs that power modern web applications."
 ---
 

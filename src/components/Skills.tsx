@@ -4,41 +4,27 @@ import { motion } from 'framer-motion'
 
 type Skill = {
   name: string
-  level: number
   category: string
 }
 
 const skills: Skill[] = [
-  { name: 'ReactJS', level: 85, category: 'Frontend' },
-  { name: 'Next.js', level: 50, category: 'Frontend' },
-  { name: 'Tailwind CSS', level: 70, category: 'Frontend' },
-  { name: 'Node.js', level: 80, category: 'Backend' },
-  { name: 'ExpressJS', level: 80, category: 'Backend' },
-  { name: 'MongoDB', level: 75, category: 'Database' },
-  { name: 'MySQL', level: 70, category: 'Database' },
-  { name: 'AWS', level: 65, category: 'Cloud & Tools' },
-  { name: 'Docker', level: 40, category: 'Cloud & Tools' },
-  { name: 'Kubernetes', level: 30, category: 'Cloud & Tools' },
-  { name: 'Git', level: 80, category: 'Cloud & Tools' },
-  { name: 'OpenCode', level: 75, category: 'Cloud & Tools' },
+  { name: 'ReactJS', category: 'Frontend' },
+  { name: 'Tailwind CSS', category: 'Frontend' },
+  { name: 'JavaScript (ES6)', category: 'Frontend' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'ExpressJS', category: 'Backend' },
+  { name: 'MongoDB', category: 'Database' },
+  { name: 'MySQL', category: 'Database' },
+  { name: 'AWS', category: 'Cloud & Tools' },
+  { name: 'Docker', category: 'Cloud & Tools' },
+  { name: 'Kubernetes', category: 'Cloud & Tools' },
+  { name: 'Git', category: 'Cloud & Tools' },
+  { name: 'OpenCode', category: 'Cloud & Tools' },
 ]
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.08 },
-  },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 },
-}
+const categories = [...new Set(skills.map((s) => s.category))]
 
 export default function Skills() {
-  const categories = [...new Set(skills.map((s) => s.category))]
-
   return (
     <section id="skills" className="px-6 py-24">
       <div className="mx-auto max-w-3xl">
@@ -54,42 +40,18 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-100px' }}
-          className="space-y-10"
-        >
+        <div className="space-y-8">
           {categories.map((category) => (
             <div key={category}>
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <h3 className="mb-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                 {category}
               </h3>
-              <div className="space-y-4">
-                {skills
-                  .filter((s) => s.category === category)
-                  .map((skill) => (
-                    <motion.div key={skill.name} variants={item}>
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-sm font-medium">{skill.name}</span>
-                        <span className="text-xs text-muted-foreground">{skill.level}%</span>
-                      </div>
-                      <div className="h-2 rounded-full bg-muted overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, ease: 'easeOut' }}
-                          className="h-full rounded-full bg-primary"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-              </div>
+              <p className="text-sm leading-relaxed text-foreground">
+                {skills.filter((s) => s.category === category).map((s) => s.name).join(', ')}
+              </p>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

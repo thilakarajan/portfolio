@@ -1,6 +1,6 @@
 ---
 title: "Learning Docker Basics"
-date: "April 2026"
+date: "2026-04"
 excerpt: "How I got started with Docker for containerizing applications and simplifying deployments."
 ---
 

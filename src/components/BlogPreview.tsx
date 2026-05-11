@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { formatDate } from '@/lib/formatDate'
 
 type Post = {
   slug: string
@@ -12,7 +13,7 @@ type Post = {
 
 export default function BlogPreview({ posts }: { posts: Post[] }) {
   return (
-    <section id="blog" className="px-6 py-24 bg-muted/50">
+    <section id="blog" className="px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -24,9 +25,9 @@ export default function BlogPreview({ posts }: { posts: Post[] }) {
             <h2 className="text-3xl font-bold tracking-tight">Blog</h2>
             <Link
               href="/blog"
-              className="text-sm text-primary hover:underline"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              View all
+              View all &rarr;
             </Link>
           </div>
           <p className="mb-12 text-muted-foreground">
@@ -34,38 +35,53 @@ export default function BlogPreview({ posts }: { posts: Post[] }) {
           </p>
         </motion.div>
 
-        <div className="space-y-6">
+        <div>
           {posts.length === 0 && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-sm text-muted-foreground"
-            >
+            <p className="text-sm text-muted-foreground">
               No posts yet. Stay tuned!
-            </motion.p>
+            </p>
           )}
-          {posts.slice(0, 3).map((post, index) => (
-            <motion.div
-              key={post.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.4, delay: index * 0.08 }}
-            >
-              <Link href={`/blog/${post.slug}`} className="group block">
-                <div className="rounded-lg border border-border bg-card p-5 transition-shadow hover:shadow-md">
-                  <h3 className="mb-1 text-lg font-semibold group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="mb-2 text-xs text-muted-foreground">{post.date}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+          {posts.slice(0, 3).map((post, index) => {
+            const { month, year } = formatDate(post.date)
+            return (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+              >
+                <Link href={`/blog/${post.slug}`} className="group block py-5">
+                  <div className="flex gap-5">
+                    <div className="flex w-12 shrink-0 flex-col pt-0.5">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        {month}
+                      </span>
+                      <span className="text-sm font-bold text-foreground">
+                        {year}
+                      </span>
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-base font-semibold group-hover:text-foreground transition-colors">
+                          {post.title}
+                        </h3>
+                        <span className="text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200">
+                          &rarr;
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+                {index < Math.min(posts.length, 3) - 1 && (
+                  <hr className="border-border" />
+                )}
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

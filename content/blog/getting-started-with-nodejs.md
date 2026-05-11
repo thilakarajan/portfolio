@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with Node.js"
-date: "September 2023"
+date: "2023-09"
 excerpt: "How I learned Node.js to run JavaScript on the server and build backend applications."
 ---
 

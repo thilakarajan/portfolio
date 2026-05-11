@@ -1,6 +1,6 @@
 ---
 title: "Using OpenCode as an AI-Assisted Development Tool"
-date: "December 2023"
+date: "2023-12"
 excerpt: "How I use OpenCode to accelerate development through AI-assisted coding workflows."
 ---
 

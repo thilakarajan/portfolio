@@ -1,6 +1,6 @@
 ---
 title: "Building Your Place — A Full-Stack Social Platform"
-date: "2026-05-10"
+date: "2025-05"
 excerpt: "Lessons learned from building a full-stack social platform with React, Express, MongoDB, and deploying to production."
 ---
 

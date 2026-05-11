@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with MySQL"
-date: "November 2023"
+date: "2023-11"
 excerpt: "How I learned MySQL and relational database concepts alongside MongoDB."
 ---
 

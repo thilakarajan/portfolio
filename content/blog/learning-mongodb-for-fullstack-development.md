@@ -1,6 +1,6 @@
 ---
 title: "Learning MongoDB for Full-Stack Development"
-date: "October 2023"
+date: "2023-10"
 excerpt: "How I learned MongoDB and Mongoose to model and manage data in my applications."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Building APIs with ExpressJS"
-date: "September 2023"
+date: "2023-09"
 excerpt: "How I learned ExpressJS to build RESTful APIs and structure backend applications."
 ---
 

@@ -15,12 +15,37 @@ export type Post = {
 function parseDate(dateStr: string): Date {
   const monthYear = dateStr.match(/^(\w+)\s+(\d{4})$/);
   if (monthYear) {
-    return new Date(`${monthYear[1]} 1, ${monthYear[2]}`);
+    const month = new Date(`${monthYear[1]} 1, 2000`).getMonth()
+    if (!Number.isNaN(month)) {
+      return new Date(Number(monthYear[2]), month, 1)
+    }
   }
-  return new Date(dateStr);
+
+  const ymd = dateStr.match(/^(\d{4})-(\d{1,2})(?:-(\d{1,2}))?$/)
+  if (ymd) {
+    const year = Number(ymd[1])
+    const month = Number(ymd[2]) || 1
+    const day = Number(ymd[3]) || 1
+    if (month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+      return new Date(year, month - 1, day)
+    }
+  }
+
+  return new Date(NaN)
+}
+
+const RAW_HTML_RE = /<\/?[a-z][^>]*>/i
+
+function assertNoRawHtml(content: string, slug: string): void {
+  if (RAW_HTML_RE.test(content)) {
+    throw new Error(
+      `Post "${slug}" contains raw HTML/JSX, which is not allowed. Remove any raw <tag> markup from content/blog/${slug}.md.`
+    )
+  }
 }
 
 let cachedPosts: Omit<Post, 'content'>[] | null = null
+let cachedBodies: Map<string, string> | null = null
 let cacheTime = 0
 const CACHE_TTL = 60_000
 
@@ -42,7 +67,9 @@ export function getAllPosts(): Omit<Post, 'content'>[] {
       const slug = fileName.replace(/\.md$/, '')
       const fullPath = path.join(postsDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data } = matter(fileContents)
+      const { data, content } = matter(fileContents)
+
+      assertNoRawHtml(content, slug)
 
       return {
         slug,
@@ -67,6 +94,21 @@ export function getPostBySlug(slug: string): Post | null {
     return null
   }
 
+  const now = Date.now()
+  const listCache = cachedPosts
+  const bodiesCache = cachedBodies
+  const cacheValid = Boolean(
+    listCache && bodiesCache && now - cacheTime < CACHE_TTL
+  )
+
+  if (cacheValid && listCache && bodiesCache) {
+    const cached = listCache.find((post) => post.slug === slug)
+    const body = bodiesCache.get(slug)
+    if (cached && body !== undefined) {
+      return { ...cached, content: body }
+    }
+  }
+
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`)
 
@@ -77,13 +119,23 @@ export function getPostBySlug(slug: string): Post | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
-    return {
+    assertNoRawHtml(content, slug)
+
+    const post: Post = {
       slug,
       title: data.title || slug,
       date: data.date || '',
       excerpt: data.excerpt || '',
       content,
     }
+
+    if (bodiesCache) {
+      bodiesCache.set(slug, content)
+    } else {
+      cachedBodies = new Map([[slug, content]])
+    }
+
+    return post
   } catch {
     return null
   }

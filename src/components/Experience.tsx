@@ -4,17 +4,17 @@ import { motion } from 'framer-motion'
 
 const experiences = [
   {
-    role: 'Software Engineer',
+    role: 'Software Engineer Intern',
     company: 'Packforce Pvt Ltd',
-    period: 'May 2025 - Present',
+    period: 'Jan 2026 - Jun 2026',
     description:
-      'Built and maintained a full-stack product from concept to production, handling frontend development with ReactJS, REST APIs with Node.js and ExpressJS, database management with MySQL and MongoDB, and cloud infrastructure on AWS. Developed and shipped new features end-to-end while maintaining existing production systems, leveraging AI-assisted development tools (OpenCode) to accelerate velocity. Managed all Git-based workflows and took full ownership of the product lifecycle from requirements gathering through deployment and ongoing maintenance.',
+      'Worked on a full-stack product alongside the engineering team, contributing to frontend development with ReactJS, REST APIs with Node.js and ExpressJS, database management with MySQL and MongoDB, and cloud infrastructure on AWS. Developed and shipped new features end-to-end, managed Git-based workflows, and gained hands-on experience across the product lifecycle from requirements gathering through deployment.',
   },
 ]
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-6 py-24">
+    <section id="experience" className="scroll-mt-20 px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import type { Metadata } from "next";
+import { formatDate } from "@/lib/formatDate";
 import LottieAnimation from "@/components/LottieAnimation";
 import { readingAnimation } from "@/lib/animations";
 
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
-  if (!post) return {};
+  if (!post) notFound();
 
   return {
     title: `${post.title} | Thilakarajan`,
@@ -34,6 +35,8 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) {
     notFound();
   }
+
+  const { month, year } = formatDate(post.date);
 
   return (
     <article className="min-h-screen px-6 pt-32 pb-24">
@@ -51,7 +54,9 @@ export default async function BlogPostPage({ params }: Props) {
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {post.title}
           </h1>
-          <p className="mt-3 text-sm text-muted-foreground">{post.date}</p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {month} {year}
+          </p>
           <hr className="mt-6 border-border" />
         </header>
 

@@ -37,7 +37,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="px-6 py-24">
+    <section id="contact" className="scroll-mt-20 px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,6 +55,7 @@ export default function Contact() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            role="status"
             className="text-center"
           >
             <Lottie animationData={contactAnimation} loop autoplay className="w-16 h-16 mx-auto mb-4 opacity-50" />
@@ -118,7 +119,7 @@ export default function Contact() {
               />
             </div>
             {error && (
-              <p className="text-sm text-muted-foreground">{error}</p>
+              <p role="status" className="text-sm text-muted-foreground">{error}</p>
             )}
             <button
               type="submit"

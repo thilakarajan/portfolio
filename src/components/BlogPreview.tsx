@@ -13,7 +13,7 @@ type Post = {
 
 export default function BlogPreview({ posts }: { posts: Post[] }) {
   return (
-    <section id="blog" className="px-6 py-24">
+    <section id="blog" className="scroll-mt-20 px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

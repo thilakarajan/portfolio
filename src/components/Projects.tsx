@@ -15,7 +15,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-6 py-24">
+    <section id="projects" className="scroll-mt-20 px-6 py-24">
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

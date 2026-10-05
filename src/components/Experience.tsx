@@ -4,9 +4,23 @@ import { motion } from 'framer-motion'
 
 const experiences = [
   {
+    role: 'Software Developer',
+    company: 'Deloitte',
+    period: 'Sep 2026 - Present',
+    description:
+      'Full-stack developer building enterprise applications with Java and Spring Boot, developing backend services and REST APIs alongside frontend interfaces. Owns features end-to-end and collaborates with client stakeholders on requirements and delivery.',
+  },
+  {
+    role: 'Software Developer',
+    company: 'Pitfall',
+    period: 'Jun 2025 - Aug 2026',
+    description:
+      'Built and maintained a full-stack product from concept to production, handling frontend development with ReactJS, REST APIs with Node.js and ExpressJS, database management with MySQL and MongoDB, and cloud infrastructure on AWS. Developed and shipped new features end-to-end while maintaining existing production systems, leveraging AI-assisted development tools (OpenCode) to accelerate velocity. Managed all Git-based workflows and took full ownership of the product lifecycle from requirements gathering through deployment and ongoing maintenance.',
+  },
+  {
     role: 'Software Engineer Intern',
-    company: 'Packforce Pvt Ltd',
-    period: 'Jan 2026 - Jun 2026',
+    company: 'Pitfall',
+    period: 'Dec 2024 - May 2025',
     description:
       'Worked on a full-stack product alongside the engineering team, contributing to frontend development with ReactJS, REST APIs with Node.js and ExpressJS, database management with MySQL and MongoDB, and cloud infrastructure on AWS. Developed and shipped new features end-to-end, managed Git-based workflows, and gained hands-on experience across the product lifecycle from requirements gathering through deployment.',
   },

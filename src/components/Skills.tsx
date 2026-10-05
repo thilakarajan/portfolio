@@ -13,6 +13,8 @@ const skills: Skill[] = [
   { name: 'JavaScript (ES6)', category: 'Frontend' },
   { name: 'Node.js', category: 'Backend' },
   { name: 'ExpressJS', category: 'Backend' },
+  { name: 'Java', category: 'Backend' },
+  { name: 'Spring Boot', category: 'Backend' },
   { name: 'MongoDB', category: 'Database' },
   { name: 'MySQL', category: 'Database' },
   { name: 'AWS', category: 'Cloud & Tools' },
